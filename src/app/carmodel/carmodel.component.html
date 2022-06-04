@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let carmodel of carModels" class="col-md-12">
+      <h2 class="mt-5 pt-3">{{carmodel.name}}</h2>
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" src="{{carmodel.photoUrl}}" style="height: 450px;width: 100%;" />
+        <div class="card-body">
+          <p class="card-text" [innerHTML]="carmodel.description">
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" routerLink="/carModelDetail/{{carmodel.id}}" class="btn btn-sm btn-outline-secondary" 
+              >
+                View
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                Edit
+              </button>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
