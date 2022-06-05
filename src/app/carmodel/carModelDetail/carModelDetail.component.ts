@@ -7,6 +7,7 @@ import {
   NgxGalleryImage,
   NgxGalleryAnimation,
 } from '@kolkov/ngx-gallery';
+import'hammerjs'
 import { Photo } from 'src/app/models/photo';
 
 @Component({
@@ -23,8 +24,8 @@ export class CarModelDetailComponent implements OnInit {
 
   carModel!: CarModel
   photos: Photo[] = []
-  galleryOptions: NgxGalleryOptions[]=[]
-  galleryImages: NgxGalleryImage[] =[]
+  galleryOptions!: NgxGalleryOptions[];
+  galleryImages!: NgxGalleryImage[];
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -39,20 +40,21 @@ export class CarModelDetailComponent implements OnInit {
     });
   }
 
-  getPhotosByCarModel(carModelId: number) {
+  getPhotosByCarModel(carModelId: number):void {
     this.carService.getPhotosByCarModel(carModelId).subscribe((data) => {
       this.photos = data;
-      this.buildGallery;
+      this.buildGallery();
     });
+    
   }
 
   getImages() {
-    const imageUrls = [];
+    let imageUrls = [];
     for (let i = 0; i < this.photos.length; i++) {
       imageUrls.push({
-        small: this.carModel.photoUrl[i].url,
-        medium: this.carModel.photoUrl[i].url,
-        big: this.carModel.photoUrl[i].url,
+        small: this.carModel.photos[i].url,
+        medium:  this.carModel.photos[i].url,
+        big: this.carModel.photos[i].url,
       });
     }
 
@@ -62,8 +64,8 @@ export class CarModelDetailComponent implements OnInit {
   buildGallery() {
     this.galleryOptions = [
       {
-        width: '600px',
-        height: '400px',
+        width: '100%',
+        height: '100%',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
       },
@@ -71,7 +73,7 @@ export class CarModelDetailComponent implements OnInit {
       {
         breakpoint: 800,
         width: '100%',
-        height: '600px',
+        height: '100%',
         imagePercent: 80,
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
@@ -84,6 +86,6 @@ export class CarModelDetailComponent implements OnInit {
       },
     ];
 
-    this.galleryImages = this.getImages();
+    this.galleryImages = this.getImages()
   }
 }

@@ -1,23 +1,26 @@
 <main role="main">
   <div class="container">
     <div class="row">
-      <form [formGroup]="carAddForm" (ngSubmit)="add()" class="">
+      <form [formGroup]="carAddForm" (ngSubmit)="add()" >
         <h2 class="mt-5 pt-3">Add New Car</h2>
         <h6>Car Name</h6>
         <div class="form-group">
             <input type="text" id="name" formControlName="name"  class="form-control"
             placeholder="Car Name" autofocus />
-            
+            <span class="help-block" *ngIf="carAddForm.get('name')?.hasError('required') && 
+            carAddForm.get('name')?.touched">You have to enter car name</span>
         </div>
 
         <h6 style="margin-top:15px">Car Description</h6>
         <div class="form-group" >
-          <input type="text" id="name" formControlName="name"  class="form-control"
-          placeholder="Description" autofocus />
+          <input type="text" id="description" formControlName="description"  class="form-control"
+          placeholder="Description" />
+          <span class="help-block" *ngIf="carAddForm.get('description')?.hasError('required') && 
+          carAddForm.get('description')?.touched" > You have to enter description for car </span>
         </div>
         
-        <button  style="margin-top:15px" type="submit" class="btn btn-lg btn-primary btn-block" >Add The Car</button>
-  
+        <button  style="margin-top:15px" type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!carAddForm.valid" >Add The Car</button>
+
        
       </form>
     </div>

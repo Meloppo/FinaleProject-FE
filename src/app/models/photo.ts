@@ -1,6 +1,6 @@
 export class Photo {
     id?: number
-    cityId?:number
+    carModelId?:number
     dateAdded?:Date
     description?:string
     isMain?:boolean

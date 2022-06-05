@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { PhotoComponent } from './photo/photo.component';
 import { BrowserModule } from '@angular/platform-browser';
 import{HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,28 +12,30 @@ import { CarModelDetailComponent } from './carmodel/carModelDetail/carModelDetai
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { AddComponent } from './carmodel/add/add.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
-
-
-
+import { AlertifyService } from './services/alertify.service';
+import 'hammerjs';
+import{FileUploadModule} from 'ng2-file-upload'
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
       NavComponent,
       CarmodelComponent,
       CarModelDetailComponent,
-      AddComponent
+      AddComponent,
+      PhotoComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    NgxGalleryModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxGalleryModule,
+    FileUploadModule
   ],
-  providers: [],
+  providers: [AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

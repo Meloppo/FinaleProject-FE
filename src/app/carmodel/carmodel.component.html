@@ -3,7 +3,7 @@
     <div *ngFor="let carmodel of carModels" class="col-md-12">
       <h2 class="mt-5 pt-3">{{carmodel.name}}</h2>
       <div class="card mb-4 shadow-sm">
-        <img class="card-img-top" src="{{carmodel.photoUrl}}" style="height: 450px;width: 100%;" />
+        <img class="card-img-top" src="{{carmodel.photos}}" style="height: 450px;width: 100%;" />
         <div class="card-body">
           <p class="card-text" [innerHTML]="carmodel.description">
           </p>
